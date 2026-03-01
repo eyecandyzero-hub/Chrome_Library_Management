@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body { 
+      font-family: 'Malgun Gothic', sans-serif; 
+      padding: 20px 10px; 
+      width: calc(100% - 30px);
+      min-width:750px;
+      line-height: 1.6; 
+      overflow-x: auto;
+    }
+    .container { width: 100%; }
+    input, textarea { 
+      width: 100%; 
+      padding: 10px; 
+
+      box-sizing: border-box; 
+      border: 1px solid #ccc; 
+    }
+    button { 
+      cursor: pointer; 
+      padding: 8px 15px; 
+      border: none; 
+      border-radius: 4px; 
+      background: #007bff; 
+      color: white; 
+      white-space: nowrap;
+    }
+    .site-tag { 
+      background: #eee; 
+      padding: 5px 10px; 
+      border-radius: 15px; 
+      font-size: 12px; 
+      display: inline-flex; 
+      align-items: center; 
+      gap: 5px; 
+      margin: 0 5px 5px 0; 
+    }
+    table { 
+      width: 100%; 
+      border-collapse: collapse; 
+      margin-top: 5px; 
+      table-layout: fixed;
+    }
+    th, td { 
+      border: 1px solid #ddd; 
+      padding: 8px; 
+      text-align: left; 
+      word-break: break-all; 
+    }
+    th { background: #f8f9fa; }
+    .edit-type {width:100%}
+    .edit-title { width: 100%; }
+    .edit-res, .edit-vol { width: 100%; }
+    .btn-save { background: #28a745; margin-right: 5px; }
+    .btn-del { background: #dc3545; }
+    .btn-backup { background: #6c757d; }
+    .btn-restore { background: #fd7e14; }
+    .flex-row { display: flex; gap: 5px; align-items: center; }
+    .batch-control { 
+      margin-top: 20px; 
+      padding: 15px; 
+      background: #f1f3f5; 
+      border-radius: 8px; 
+      display: flex; 
+      justify-content: space-between;
+      align-items: center;
+    }
+    select{
+      padding: 5px; 
+      border: 1px solid #007bff; 
+      border-radius: 4px; outline: none; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+<div style="display: flex; justify-content: flex-end; align-items: center; padding-bottom: 15px; font-size: 13px; color: #555;">
+  <span>현재 버전: <b id="current-version">v1.0</b></span>
+  <button id="check-update-btn" style="margin-left: 10px; padding: 5px 12px; background-color: #17a2b8; color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">
+    최신버전 확인
+  </button>
+  <span id="update-msg" style="margin-left: 10px; font-weight: bold;"></span>
+</div>
+  <div class="container">
+    <h3>🌐 사이트 관리</h3>
+    <div class="flex-row">
+      <input type="text" id="siteInput" placeholder="도메인 입력 (예: domain.com)">
+      <button id="addSiteBtn">추가</button>
+    </div>
+    <div id="siteList" style="margin-top:10px;"></div>
+    
+    <hr>
+    
+    <h3>📚 도서 관리 및 백업</h3>
+    <div class="flex-row" style="margin-bottom: 10px;">
+        <button id="exportBtn" class="btn-backup">데이터 백업</button>
+        <button id="importBtn" class="btn-restore">데이터 복구</button>
+        <input type="file" id="fileInput" style="display:none" accept=".json">
+        <span id="lastBackupTime" style="margin-left: 10px; font-size: 13px; color: #868e96; letter-spacing: -0.5px;"></span>
+    </div>
+
+    <textarea id="bulkInput" placeholder="제목 권수 해상도 포함하여 입력"></textarea>
+    <button id="saveBtn" style="width:100%">일괄 저장</button>
+    
+    <div class="batch-control">
+        <div>
+            <strong>검색된 결과 타입 일괄 변경:</strong>
+            <select id="batchTypeSelect" style="padding: 5px; margin-left: 10px;">
+                <option value="exclude">제외</option>
+                <option value="incomplete">미완</option>
+            </select>
+            <button id="batchUpdateBtn" style="margin-left: 5px; background: #20c997;">적용</button>
+        </div>
+        <div style="display: flex; gap: 10px; width: 50%; justify-content: flex-end;">
+            <select id="sortSelect">
+                <option value="id_desc">등록순 (최신순)</option>
+                <option value="id_asc">등록순 (오래된순)</option>
+                <option value="title_asc">제목 (가나다순)</option>
+                <option value="title_desc">제목 (역순)</option>
+                <option value="date_desc">날짜 (최신순)</option>
+                <option value="date_asc">날짜 (오래된순)</option>
+            </select>
+            <input type="text" id="searchInput" placeholder="저장된 제목 검색..." style="width: 60%; margin-bottom: 0; border-color:#007bff;">
+        </div>
+    </div>
+    
+    <div id="listCountDisplay" style="margin-top: 15px; margin-bottom: 5px; font-weight: bold; color: #495057; font-size: 14px;"></div>
+
+    <table>
+      <thead>
+        <tr>
+          <th style="width: 70px;">타입</th>
+          <th>제목</th>
+          <th style="width: 80px;">해상도</th>
+          <th style="width: 70px;">권수</th>
+          <th style="width: 65px;">날짜</th>
+          <th style="width: 120px;">관리</th>
+        </tr>
+      </thead>
+      <tbody id="listBody"></tbody>
+    </table>
+  </div>
+  <script src="options.js"></script>
+</body>
+</html>
