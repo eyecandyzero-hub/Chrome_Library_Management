@@ -41,6 +41,11 @@
 ![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/10.png)
 ![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/11.png)
 
+썸네일 미리보기 기능
+
+![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/11.png)
+
+
 ### 주요 사용 방법
 
 - 기능을 적용할 사이트 도메인을 입력해주세요.
