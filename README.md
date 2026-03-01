@@ -36,7 +36,10 @@
 
 ![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/3.png)
 
+바로 다운로드 기능
 
+![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/10.png)
+![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/11.png)
 
 ### 주요 사용 방법
 
