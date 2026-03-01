@@ -43,7 +43,7 @@
 
 썸네일 미리보기 기능
 
-![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/11.png)
+![image](https://github.com/eyecandyzero-hub/Chrome_Library_Management/blob/main/images/12.png)
 
 
 ### 주요 사용 방법
